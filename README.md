@@ -1,6 +1,7 @@
 # System-Health-Monitoring-Script-Python-
 This script checks CPU, memory, disk usage, and running processes, and logs alerts if thresholds are exceeded.
 
+```
 
 #!/usr/bin/env python3
 import psutil
@@ -53,3 +54,5 @@ if __name__ == "__main__":
     print(f"Disk Usage: {disk}%")
     print(f"Processes with high CPU usage: {high_cpu_proc_count}")
     print("System health check complete. Check 'system_health.log' for alerts.")
+```
+
