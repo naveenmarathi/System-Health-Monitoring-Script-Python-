@@ -65,6 +65,8 @@ if __name__ == "__main__":
 
 ## 2. Application Health Checker (Python)
 
+- This script checks if a web application is “up” by analyzing HTTP response codes.
+
 ```
 #!/usr/bin/env python3
 import requests
