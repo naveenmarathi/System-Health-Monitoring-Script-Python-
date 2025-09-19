@@ -61,3 +61,56 @@ if __name__ == "__main__":
 - python3 system_health.py
 
 - Alerts will be written to system_health.log if any thresholds are exceeded.
+
+
+## 2. Application Health Checker (Python)
+
+```
+#!/usr/bin/env python3
+import requests
+import logging
+from datetime import datetime
+
+# Configuration
+APP_URL = "http://localhost:8080"  # Change to your app URL
+TIMEOUT = 5                        # seconds
+
+# Logging setup
+logging.basicConfig(filename="app_health.log",
+                    level=logging.INFO,
+                    format="%(asctime)s - %(levelname)s - %(message)s")
+
+def check_app_status(url):
+    try:
+        response = requests.get(url, timeout=TIMEOUT)
+        if response.status_code == 200:
+            logging.info(f"Application is UP (Status {response.status_code})")
+            return "UP"
+        else:
+            logging.warning(f"Application DOWN (Status {response.status_code})")
+            return "DOWN"
+    except requests.exceptions.RequestException as e:
+        logging.error(f"Application DOWN (Error: {e})")
+        return "DOWN"
+
+if __name__ == "__main__":
+    status = check_app_status(APP_URL)
+    print(f"Application status: {status}")
+    print("Check 'app_health.log' for details")
+```
+
+# Usage:
+
+- python3 app_health_checker.py
+
+# Notes:
+
+- HTTP 200 is considered UP. Any other status or connection failure is DOWN.
+
+- Can be scheduled to run periodically via cron for continuous monitoring.
+
+# Summary:
+
+- Backup script ensures your files are backed up locally or remotely with a timestamped folder.
+
+- Health checker script monitors application uptime and logs alerts.
