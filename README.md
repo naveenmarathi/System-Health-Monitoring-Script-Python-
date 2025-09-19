@@ -56,3 +56,8 @@ if __name__ == "__main__":
     print("System health check complete. Check 'system_health.log' for alerts.")
 ```
 
+## Usage:
+
+- python3 system_health.py
+
+- Alerts will be written to system_health.log if any thresholds are exceeded.
